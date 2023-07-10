@@ -1,0 +1,308 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.desktopSize{
+	padding: 3rem;
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-areas: "mixPads pantalla";
+	gap: 3rem;
+	background-image: radial-gradient(at 50% 0%, rgb(40, 40, 40)0, rgba(28, 28, 28)70%);
+}
+.mobileSize{
+	padding: 3rem 2rem 2rem;
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-areas:	"pantalla"
+							"mixPads";
+	gap: 2rem;
+	background-image: radial-gradient(at 50% 0%, rgb(40, 40, 40)0, rgba(28, 28, 28)70%);
+}
+#marca{
+	position: absolute;
+	top: .7rem;
+	right: 3.3rem;
+}
+#marca h1{
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 700;
+	font-style: italic;
+	font-size: 2rem;
+	color:whitesmoke;
+}
+#marca h1 span{
+	font-weight: 300;
+	font-style: normal;
+	font-size: 80%;
+}
+#mixPads{
+	width: calc(70vw - 9rem);
+	height: 100%;
+	grid-area: mixPads;
+	display: grid;
+	grid-template: 1fr 4fr / 100%;
+	gap: 2rem;
+}
+#controles{
+	height: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+#recBoton{
+	width: 5rem;
+	height: 5rem;
+	border-radius: 50%;
+	color: rgb(40, 40, 40);
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 700;
+	font-style: italic;
+	color: red;
+}
+.no-recordin #recBoton{
+	background-image: radial-gradient( white 60%, rgb(154, 147, 147)90%)
+}
+.recording #recBoton{
+	box-shadow: 0 0 1rem red;
+	background-color: red;
+}
+.recording #recBoton:active{
+	border: .15rem solid red;
+	box-shadow: 0 0 1rem red;
+}
+#pads{
+	height: 100%;
+	display: grid;
+	grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+	gap: .7rem;
+}
+#pads button{
+	padding: .7rem;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(28, 28, 28);
+	border-radius: .5rem;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	color: whitesmoke;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 700;
+	font-style: italic;
+	
+}
+.off button{
+	border: .15rem solid rgb(245, 245, 245);
+}
+.off button:active{
+	box-shadow: 0 0 .8rem black;
+}
+.on button{
+	border: .15rem solid rgb(205, 251, 255);
+	box-shadow: 0 0 .5rem rgb(205, 251, 255);
+	border-radius: .5rem;
+}
+.on button:active{
+	border: .15rem solid rgb(139, 233, 242);
+	box-shadow: 0 0 .8rem rgb(139, 233, 242);
+}
+.recording ~ .on button:active{
+	border: .15rem solid red;
+	box-shadow: 0 0 .8rem red;
+}
+
+
+
+
+#pantalla{
+	height: 100%;
+	width: 30vw;
+	position: relative;
+	padding: 2rem 2rem 0;
+	grid-area: pantalla;
+	background-color: rgb(11, 66, 124);
+	border-radius: .25rem;
+	border-top: .3rem solid black;
+	border-bottom: .3rem solid rgb(28, 28, 28);
+	border-left: .3rem solid rgb(14, 14, 14);
+	border-right: .3rem solid rgb(40, 40, 40);
+	font-family: 'Roboto Mono', monospace;
+	color: rgb(192,228,242);
+	overflow-x: hidden;
+}
+#pantalla button, input{
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	background-color: transparent;
+	color: rgb(192,228,242);
+	padding: .15rem;
+	font-family: 'Roboto Mono', monospace;
+	box-sizing: border-box;
+	margin: .2rem;
+	font-size: 1rem;
+}
+#pantalla button:hover, input:hover{
+	outline: .15rem solid rgb(192,228,242);
+}
+#pantalla button:active{
+	outline: .15rem solid rgb(192,228,242);
+	background-color: rgb(192,228,242);
+}
+#login input:focus, #signup input:focus{
+	background-color: rgb(192,228,242);
+	color:rgb(11, 66, 124);
+}
+#login button:hover, #signup button:hover{
+	color: rgb(11, 66, 124)	;
+	background-color: rgb(192,228,242);
+}
+#login button, #signup button{
+	margin-bottom: 2rem;
+}
+#header{
+	height: 4rem;
+	width: 100%;
+	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: space-between;
+}
+#header #cabecera{
+	position: relative;
+	top: -.4rem;
+}
+#logout{
+	object-fit: cover;
+	border: none;
+	width: 2rem;
+	height: 2rem;
+}
+#logout img{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+#trackController{
+	height: calc(100% - 12.5rem);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+#trackList{
+	overflow-y: scroll;
+	height: 100%;
+}
+#trackList div{
+	display: block;
+	width: calc(100% - .5rem);
+	height: 1.7rem;
+	margin-bottom: 1rem;
+	padding: .05rem;
+	position: relative;
+	top: .45rem;
+	left: .45rem;
+}
+#trackList label{
+	color: rgb(192,228,242);
+	position: absolute;
+	padding: .15rem;
+	left: -.3rem;
+	top: -.1rem;
+	width: 100%;
+	height: 100%;
+}
+#trackList input{
+	position: absolute;
+	left: -.5rem;
+	top: -.3rem;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	z-index: 1;
+}
+#trackList input:checked~label{
+	color: rgb(11, 66, 124);
+	outline: .15rem solid rgb(192,228,242);
+	background-color: rgb(192,228,242);
+}
+#trackSettings{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	padding: 1rem 2rem 2rem;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	background-color: rgb(11, 66, 124);
+}
+#trackSettings button{
+	width: 2.5rem;
+	height: 2.5rem;
+}
+#trackSettings button:nth-child(2n){
+	width: 4rem;
+	height: 4rem;
+}
+#trackSettings img{
+	width: 100%;
+	z-index: -1;
+};
+
+
+
+
+
+.mobileSize #marca{
+	right: 2.3rem;
+}
+.mobileSize #mixPads{
+	height: calc(70vh - 7rem);
+	width: 100%;
+}
+.mobileSize #pantalla{
+	height: 30vh;
+	width: 100%;
+	padding: 1rem 2rem 0rem;
+}
+.mobileSize #header{
+	height: 3rem;
+	margin-bottom: 1rem;
+}
+.mobileSize #trackController{
+	width: calc(100% - 5rem);
+	height: calc(100% - 4rem);
+}
+.mobileSize #trackList div{
+	display: block;
+	height: 1.7rem;
+	margin-bottom: .5rem;
+	position: relative;
+	top: .5rem;
+	padding: .05rem;
+}
+.mobileSize #trackSettings{
+	position: absolute;
+	flex-direction: column;
+	align-items: center;
+	right: 0;
+	bottom: 0.5rem;
+	height: calc(100% - 4.5rem);
+	max-height: 10rem;
+	width: 6.5rem;
+	padding: 0 2rem;
+}
+.mobileSize #trackSettings button{
+	width: 1.75rem;
+	height: 1.75rem;
+}
+.mobileSize #trackSettings button:nth-child(2n){
+	width: 2rem;
+	height: 2rem;
+}
