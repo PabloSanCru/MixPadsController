@@ -14,7 +14,8 @@ class TrackItem extends Component {
   
   async getList(){
     const consulta = await axios.post("https://mixpads-controller-server.onrender.com/track/readList", {userSession});
-    this.setState({dataRead : true})
+    this.setState({dataRead : true});
+    console.log(this.state.dataRead);
     let response = consulta.data;
     this.setState({dataTrack : response});
   }
