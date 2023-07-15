@@ -1,35 +1,46 @@
+/* IMPORTACIONES */
+
 import React, {Component} from "react";
-import axios from "axios";
-const userSession = localStorage.getItem("session");
+import axios from "axios"; // Módulo para la conexión y envío de peticiones
+
+
+/* ELEMENTOS */
+
+const userSession = localStorage.getItem("session"); // Recepción de la información de logueo del usuario
+
+
+/* ELEMENTO */
 
 class TrackItem extends Component {
   constructor(props){
       super(props)
-      this.state = {
-        dataTrack: [],
+      this.state = { // Propiedades de estado del componente TrackItem
+        dataTrack: [1],
         selectedRadioInput: "",
-        dataRead: false
+        dataRead: "", // Recurso de carga
       }
   };
   
-  async getList(){
+  async getList(){ // Consulta de seciencias de sonidos grabadas en el perfil del usuario logueado
+    this.setState({dataRead : false})
     const consulta = await axios.post("https://mixpads-controller-server.onrender.com/track/readList", {userSession});
-    console.log(this.state.dataRead);
-    let response = consulta.data;
-    response != null ? this.setState({dataRead : true}) : "";
-    console.log(this.state.dataRead);
-    this.setState({dataTrack : response});
+    await this.setState({dataTrack : consulta.data});
+    this.setState({dataRead : true})
   }
 
-  componentDidMount(){
+  componentDidMount(){ // Al cargar la página, ejecuta la función de búsqueda de secuencias
     this.getList();
   }
 
-  render(){
-    return (
-      this.state.dataRead === false ? 
-        <p>Cargando...</p>
-      :
+  render(){ // Renderización de las canciones del usuario en el elemento
+    if(this.state.dataRead === false){
+      return (
+        <div id="trackList">
+          <p>Cargando...</p>
+        </div>
+      )
+    }else{
+      return (
         <div id="trackList">
           {this.state.dataTrack.map((track, i) => (
             <div>
@@ -38,8 +49,40 @@ class TrackItem extends Component {
             </div>
           ))}
         </div>
-    )
+      ) 
+    }
   }
+
+  render(){
+    console.log(this.state.dataRead);
+    console.log(this.state.dataTrack);
+    if(this.state.dataRead === false){
+      return (
+        <p>Cargando...</p>
+      )
+    }else{
+      if(this.state.dataTrack.length !== 0){
+        return (
+          <div id="trackList">
+            {this.state.dataTrack.map((track, i) => (
+              <div>
+                <input type="radio" name="trackList" value={track.id}/>
+                <label htmlFor={track.id}>#{i + 1}/ {track.trackName}</label>
+              </div>
+            ))}
+          </div>
+        )
+      }else{
+        return (
+          <p>Graba tu primer track!</p>
+        )
+      } 
+    }   
+  }
+
 }
+
+
+/* EXPORTACIONES */
 
 export default TrackItem;

@@ -1,9 +1,17 @@
+/* IMPORTACIONES */
+
 import Logout from "./logout";
-const userSession = localStorage.getItem("session");
+
+
+/* ELEMENTOS */
+
+const userSession = localStorage.getItem("session"); // Recepción de la información de logueo del usuario
+
+
+/* FUNCIÓN */
 
 function Header(){
-
-    return(
+    return ( // Impresión de la cabecera de pantalla cuando el usuario está logueado, donde encontramos el nombre del usuario y titular de la zona donde se encuentra, y botón de "Logout"
         <header id="header">
             <div id="cabecera">
                 <h2>{userSession}</h2>
@@ -13,5 +21,8 @@ function Header(){
         </header>
     )
 }
+
+
+/* EXPORTACIONES */
 
 export default Header;

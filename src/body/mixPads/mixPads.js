@@ -1,34 +1,40 @@
+/* IMPORTACIONES */
+
 import React, {useState, useEffect} from "react";
-import axios from "axios";
+import axios from "axios"; // Módulo para la conexión y envío de peticiones
 
-const userSession = localStorage.getItem("session");
-let trackRecording = [];
 
-function Controles() {
-    const [rec, setRec] = useState(false);
+/* ELEMENTOS */
 
-    async function enviarGrabacion(){
+const userSession = localStorage.getItem("session"); // Recepción de la información de logueo del usuario
+let trackRecording = []; // Secuencia de sonidos tecleados
+
+
+/* FUNCIONES */
+
+function Controles() { // Función para el boton de grabación de canciones de la web
+    const [rec, setRec] = useState(false); // Elemento para el estado de grabación
+
+    async function enviarGrabacion(){ // Envío de secuencia de sonidos tecleados al servidor, convirtiendo la secuencia en un string para poder ser registrada como texto. Posteriormente se recarga la página para actualizar el contenido de la web
         const track = JSON.stringify(trackRecording);
         const recordData = {userSession, track};
-        axios.post("https://mixpads-controller-server.onrender.com/track/record", recordData)
-        .then(res => (res.data === true ? window.location.reload() : ""));
+        const consulta = await axios.post("https://mixpads-controller-server.onrender.com/track/record", recordData);
+        if (consulta.data === true){window.location.reload()};
         trackRecording = [];
     }
 
-    function grabar(){
+    function grabar(){ // Función toggle para el estado de grabación de las seciencias, y al final la grabación ejecuta la función de envío si hay algún sonido tecleado
         if(rec === false){
             setRec(true);
             trackRecording = [];
         }else{
             setRec(false);
             console.log(trackRecording.length);
-            if(trackRecording.length >= 1){
-                enviarGrabacion();
-            }
+            if (trackRecording.length >= 1){enviarGrabacion()};
         }
     }
 
-    return (
+    return ( // Impresion del articulo "controles" con el botón de grabación, que solo se muestra al estar logueado
         <article id="controles" className={rec === true ? "recording" : "no-recording"}>
             {userSession ? <button name="recBoton" id="recBoton" onClick={grabar}>REC</button> : <div id="recBoton"></div> }
         </article>
@@ -36,28 +42,30 @@ function Controles() {
     
 }
 
-function Pads() {
-    async function playSonidoKey(e){
+
+
+
+
+function Pads() { // Función para los pads de sonidos de la web
+    async function playSonidoKey(e){ // Reproducción de los sonidos al evento del tecleo de teclas físicas
         if(e.key === "1" || e.key === "2" || e.key === "3" || e.key === "4" || e.key === "q" || e.key === "w" || e.key === "e" || e.key === "r" || e.key === "a" || e.key === "s" || e.key === "d" || e.key === "f" || e.key === "z" || e.key === "x" || e.key === "c" || e.key === "v"){
-            let audio = new Audio("./mp3/pad-"+e.key+".mp3");
-            audio.play();
-            trackRecording.push("./mp3/pad-"+e.key+".mp3");
+            let audio = new Audio("./mp3/pad-"+e.key+".mp3"); // Creación del audio según la tecla
+            audio.play(); // Reproducción del audio
+            trackRecording.push("./mp3/pad-"+e.key+".mp3"); // Elemento añadido al array de secuencia de sonidos tecleados
         }
     }
     
     useEffect(() => {
-        if(userSession != null){
-            window.addEventListener("keydown", playSonidoKey);
-        }
+        window.addEventListener("keydown", playSonidoKey);
     }, []);
 
-    async function playSonido(e){
-        let audio = new Audio("./mp3/"+e.target.dataset.id+".mp3");
-        audio.play();
-        trackRecording.push("./mp3/"+e.target.dataset.id+".mp3");
+    async function playSonido(e){ // Reproducción de los sonidos al evento del click en el pad digital
+        let audio = new Audio("./mp3/"+e.target.dataset.id+".mp3"); // Creación del audio según el pad
+        audio.play(); // Reproducción del audio
+        trackRecording.push("./mp3/"+e.target.dataset.id+".mp3"); // Elemento añadido al array de secuencia de sonidos tecleados
     }
 
-    return (
+    return ( // Impresión de los pads digitales con asignación de las teclas físicas
     <article id="pads" className={userSession != null ? "on" : "off"}>
         <button data-id="pad-1" className="pad" onClick={playSonido}>1</button>
         <button data-id="pad-2" className="pad" onClick={playSonido}>2</button>
@@ -79,9 +87,12 @@ function Pads() {
     )
 }
 
-function App() {
 
-    return(
+
+
+
+function MixPads() { // Función para la sección de teclas de la web
+    return ( // Impresión de los componentes "controles" y "pads" dentro de la sección "mixPads" 
         <section id="mixPads">
             <Controles />
             <Pads />
@@ -90,4 +101,7 @@ function App() {
   
 }
 
-export default App;
+
+/* EXPORTACIONES */
+
+export default MixPads;
