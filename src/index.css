@@ -134,6 +134,12 @@
 	color: rgb(192,228,242);
 	overflow-x: hidden;
 }
+#pantalla .error{
+	display: block;
+	background-color: red;
+	font-size: 0.8rem;
+	margin-left: .3rem;
+}
 #pantalla button, input{
 	-webkit-appearance: none;
 	appearance: none;
