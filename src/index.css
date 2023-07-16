@@ -152,6 +152,10 @@
 	margin: .2rem;
 	font-size: 1rem;
 }
+#pantalla input::placeholder{
+	color: rgba(192,228,242,.5);
+	font-family: 'Roboto Mono', monospace;
+}
 #pantalla button:hover, input:hover{
 	outline: .15rem solid rgb(192,228,242);
 }
