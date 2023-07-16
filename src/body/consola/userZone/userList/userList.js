@@ -36,7 +36,7 @@ function UserList(){
       if(newTrack != null){ // Si se ha introducido un nuevo nombre, realiza una consulta para cambiar el nombre en la base de datos y recarga la página par imprimir las actualizaciones
         const newTrackData = {trackitem, newTrack};
         const consulta = await axios.post("https://mixpads-controller-server.onrender.com/track/update", newTrackData);
-        if (consulta.data === true){window.location.reload()};
+        if(consulta.data === true){window.location.reload()}
       }
     }
   }
@@ -45,7 +45,7 @@ function UserList(){
     event.preventDefault();
     if(trackitem != null){ // Si hay un track selecionado, realiza una consulta para recuperar dicha secuencia de la base de datos y ejecuta la función de reproducción de array de sonidos
       const consulta = await axios.post("https://mixpads-controller-server.onrender.com/track/play", {data: trackitem});
-      playTrackArray(consulta.data[0].track);
+      if(consulta.data !== false){playTrackArray(consulta.data[0].track)}
     }
   }
 
@@ -53,7 +53,7 @@ function UserList(){
     event.preventDefault();
     if(trackitem != null){ // Si hay un track selecionado, realiza una consulta para eliminar dicho track de la base de datos y posteriormente recarga la página para imprimir la lista de tracks actualizada
       const consulta = await axios.post("https://mixpads-controller-server.onrender.com/track/delete", {data: trackitem});
-      if (consulta.data === true){window.location.reload()};
+      if(consulta.data === true){window.location.reload()}
     }
   }
 

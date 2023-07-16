@@ -32,36 +32,17 @@ class TrackItem extends Component {
     this.getList();
   }
 
-  render(){ // Renderización de las canciones del usuario en el elemento
-    if(this.state.dataRead === false){
-      return (
-        <div id="trackList">
-          <p>Cargando...</p>
-        </div>
-      )
-    }else{
-      return (
-        <div id="trackList">
-          {this.state.dataTrack.map((track, i) => (
-            <div>
-              <input type="radio" name="trackList" value={track.id}/>
-              <label htmlFor={track.id}>#{i + 1}/ {track.trackName}</label>
-            </div>
-          ))}
-        </div>
-      ) 
-    }
-  }
-
-  render(){
-    console.log(this.state.dataRead);
-    console.log(this.state.dataTrack);
+  render(){ // Renderización de las canciones del usuario o de la respuesta del servidor en caso de no tenerlas o de haber un fallo en el servidor
     if(this.state.dataRead === false){
       return (
         <p>Cargando...</p>
       )
     }else{
-      if(this.state.dataTrack.length !== 0){
+      if(this.state.dataTrack === "Error en el servidor" || this.state.dataTrack === "Graba tu primer track!"){
+        return (
+          <p>{this.state.dataTrack}</p>
+        )
+      }else{
         return (
           <div id="trackList">
             {this.state.dataTrack.map((track, i) => (
@@ -72,14 +53,9 @@ class TrackItem extends Component {
             ))}
           </div>
         )
-      }else{
-        return (
-          <p>Graba tu primer track!</p>
-        )
-      } 
+      }
     }   
   }
-
 }
 
 
