@@ -1,8 +1,12 @@
+/* ASPECTOS GENERALES */
 *{
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 }
+
+/* ESTRUCTURAS PRINCIPALES DE RESPONSIVE */
+/* Tamaño Desktop */
 .desktopSize{
 	padding: 3rem;
 	width: 100vw;
@@ -12,6 +16,7 @@
 	gap: 3rem;
 	background-image: radial-gradient(at 50% 0%, rgb(40, 40, 40)0, rgba(28, 28, 28)70%);
 }
+/* Tamaño móvil */
 .mobileSize{
 	padding: 3rem 2rem 2rem;
 	width: 100vw;
@@ -22,6 +27,8 @@
 	gap: 2rem;
 	background-image: radial-gradient(at 50% 0%, rgb(40, 40, 40)0, rgba(28, 28, 28)70%);
 }
+
+/* CABECERA / MARCA DE LA WEB */
 #marca{
 	position: absolute;
 	top: .7rem;
@@ -39,6 +46,8 @@
 	font-style: normal;
 	font-size: 80%;
 }
+
+/* ZONA MIXPADS */
 #mixPads{
 	width: calc(70vw - 9rem);
 	height: 100%;
@@ -47,6 +56,7 @@
 	grid-template: 1fr 4fr / 100%;
 	gap: 2rem;
 }
+/* Controles de las grabaciones */
 #controles{
 	height: 100%;
 	display: flex;
@@ -63,7 +73,7 @@
 	font-style: italic;
 	color: red;
 }
-.no-recordin #recBoton{
+.no-recording #recBoton{
 	background-image: radial-gradient( white 60%, rgb(154, 147, 147)90%)
 }
 .recording #recBoton{
@@ -74,6 +84,7 @@
 	border: .15rem solid red;
 	box-shadow: 0 0 1rem red;
 }
+/* Teclas de sonidos */
 #pads{
 	height: 100%;
 	display: grid;
@@ -115,9 +126,7 @@
 	box-shadow: 0 0 .8rem red;
 }
 
-
-
-
+/* ZONA PANTALLA */
 #pantalla{
 	height: 100%;
 	width: 30vw;
@@ -134,6 +143,7 @@
 	color: rgb(192,228,242);
 	overflow-x: hidden;
 }
+/* Elementos comunes de la zona y sección de Registro y Login */
 #pantalla .error{
 	display: block;
 	background-color: red;
@@ -174,6 +184,7 @@
 #login button, #signup button{
 	margin-bottom: 2rem;
 }
+/* Cabecera de sección iniciada */
 #header{
 	height: 4rem;
 	width: 100%;
@@ -198,6 +209,7 @@
 	height: 100%;
 	object-fit: contain;
 }
+/* Zona gestión de canciones */
 #trackController{
 	height: calc(100% - 12.5rem);
 	display: flex;
@@ -265,10 +277,7 @@
 	z-index: -1;
 };
 
-
-
-
-
+/* RESPONSIVE PARA MOVIL */
 .mobileSize #marca{
 	right: 2.3rem;
 }
