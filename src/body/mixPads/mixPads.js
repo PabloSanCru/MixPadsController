@@ -36,7 +36,7 @@ function Controles() { // Función para el boton de grabación de canciones de l
 
     return ( // Impresion del articulo "controles" con el botón de grabación, que solo se muestra al estar logueado
         <article id="controles" className={rec === true ? "recording" : "no-recording"}>
-            {userSession ? <button name="recBoton" id="recBoton" onClick={grabar}>REC</button> : <div id="recBoton"></div> }
+            {userSession ? <button name="recBoton" id="recBoton" onClick={grabar}>REC</button> : <div id="noBoton"></div> }
         </article>
     )
     
