@@ -42,10 +42,6 @@ function Controles() { // Función para el boton de grabación de canciones de l
     
 }
 
-
-
-
-
 function Pads() { // Función para los pads de sonidos de la web
     async function playSonidoKey(e){ // Reproducción de los sonidos al evento del tecleo de teclas físicas
         if(e.key === "1" || e.key === "2" || e.key === "3" || e.key === "4" || e.key === "q" || e.key === "w" || e.key === "e" || e.key === "r" || e.key === "a" || e.key === "s" || e.key === "d" || e.key === "f" || e.key === "z" || e.key === "x" || e.key === "c" || e.key === "v"){
@@ -87,11 +83,7 @@ function Pads() { // Función para los pads de sonidos de la web
     )
 }
 
-
-
-
-
-function MixPads() { // Función para la sección de teclas de la web
+function MixPads() { // Función para la sección de Mix de Pads de la web
     return ( // Impresión de los componentes "controles" y "pads" dentro de la sección "mixPads" 
         <section id="mixPads">
             <Controles />
