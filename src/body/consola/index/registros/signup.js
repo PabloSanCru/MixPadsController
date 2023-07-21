@@ -23,7 +23,7 @@ function Signup() {
     setErrores(validationSign(newuser));
     if(errores.username === "" && errores.name === "" && errores.email === "" && errores.password === ""){
       const consulta = await axios.post("https://mixpads-controller-server.onrender.com/user/signup", newuser);
-      if(consulta.data !== newuser.username){
+      if(consulta.data !== true){
         setErrores({server: consulta.data});
       }
     }

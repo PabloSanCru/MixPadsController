@@ -15,7 +15,7 @@ class TrackItem extends Component {
   constructor(props){
       super(props)
       this.state = { // Propiedades de estado del componente TrackItem
-        dataTrack: [1],
+        dataTrack: [],
         selectedRadioInput: "",
         dataRead: "", // Recurso de carga
       }
